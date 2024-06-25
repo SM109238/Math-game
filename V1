@@ -1,0 +1,39 @@
+from tkinter import *
+from tkinter.ttk import *
+import random
+
+def quit():
+    main_window.destroy()
+
+def fullname():
+    name = entry_box1.get()
+def ChooseLevelWindow():
+    ChooseLevel = Toplevel(main_window)
+    ChooseLevel.title("New Window")
+    ChooseLevel.geometry("200x200")
+    def exit():
+        ChooseLevel.destroy()
+    Button(ChooseLevel, text="Quit", command=exit, width=12).grid(row=0, column=4, sticky=E)
+    Label(ChooseLevel, text="Choose a level:").grid(row=1, column=3, sticky=W)
+    Button(ChooseLevel, text="L1:Easy").grid(row=4, column=3, sticky=W)
+    Button(ChooseLevel, text="L2:Medium").grid(row=5, column=3, sticky=W)
+    Button(ChooseLevel, text="L3:Hard").grid(row=6, column=3, sticky=W)
+    
+   
+
+def main():
+    global main_window, entry_box1
+    main_window = Tk()
+    main_window.title("Receipt System")
+    Button(main_window, text="quit", command=quit, width=12).grid(row=0, column=4, sticky=W, padx=30, pady=10)
+    Label(main_window,  text="Hello", width=12).grid(row=3, column=2, padx=20, pady=2)
+    Label(main_window,  text="Welcome to the Math Quiz").grid(row=4, column=2, sticky=W)
+    Label(main_window, text="by XYZ").grid(row=5, column=2, sticky=W)
+    Label(main_window, text="Enter your full name:").grid(row=7, column=1, sticky=S,  padx=5, pady=5)
+    Button(main_window, text="Start", command=ChooseLevelWindow).grid(row=14, column=2, padx=5, pady=50)
+    entry_box1 = Entry(main_window)
+    entry_box1.grid(row=8, column=1, sticky=E, padx=5, pady=1)
+
+    main_window.mainloop()
+    
+main()

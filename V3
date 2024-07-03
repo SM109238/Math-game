@@ -1,0 +1,82 @@
+from tkinter import *
+from tkinter.ttk import *
+import random
+
+def quit():
+    main_window.destroy()
+
+def fullname():
+    name = entry_box1.get()
+def ChooseLevelWindow():
+    ChooseLevel = Toplevel(main_window)
+    ChooseLevel.title("New Window")
+    ChooseLevel.geometry("200x205")
+    def exit():
+        ChooseLevel.destroy()
+    def Easy_window():
+        def exit():
+            Easy.destroy()
+        Easy = Toplevel(ChooseLevel)
+        Easy.title("Easy level")
+        Easy.geometry("600x500")
+        Label(Easy, text=entry_box1.get()).grid(row=1, column=3, padx=(250,5), pady=(0,0))
+        Button(Easy, text="Quit", command=exit).grid(row=0, column=4, sticky=W, padx=(100,600), pady=(0,0))
+        Label(Easy, text="Question n.o:").grid(row=3, column=1) #padx=(100, 200), pady=(12,0))
+        Label(Easy, text="L1:Easy").grid(row=3, column=4, padx=(100,600), pady=(0,1))
+
+    def Medium_window():
+        def exit():
+            Medium.destroy()
+        Medium = Toplevel(ChooseLevel)
+        Medium.title("Easy level")
+        Medium.geometry("600x500")
+        Label(Medium, text=entry_box1.get()).grid(row=1, column=3, padx=(250,5), pady=(0,0))
+        Button(Medium, text="Quit", command=exit).grid(row=0, column=4, sticky=W, padx=(200,600), pady=(0,0))
+        Label(Medium, text="Question n.o:").grid(row=3, column=1) #padx=(100, 200), pady=(12,0))
+        Label(Medium, text="L2:Medium").grid(row=3, column=4, padx=(100,500), pady=(0,1))
+
+        
+
+    def Hard_window():
+        def exit():
+            Hard.destroy()
+        Hard = Toplevel(ChooseLevel)
+        Hard.title("Easy level")
+        Hard.geometry("600x500")
+        Label(Hard, text=entry_box1.get()).grid(row=1, column=3, padx=(250,5), pady=(0,0))
+        Button(Hard, text="Quit", command=exit).grid(row=0, column=4, sticky=W, padx=(200,600), pady=(0,0))
+        Label(Hard, text="Question n.o:").grid(row=3, column=1) #padx=(100, 200), pady=(12,0))
+        Label(Hard, text="L3:Hard").grid(row=3, column=4, padx=(100,500), pady=(0,1))
+        
+    Button(ChooseLevel, text="Quit", command=exit, width=10).grid(row=0, column=4, sticky=E, padx=(20,3), pady=(0,0))
+    Label(ChooseLevel, text="Choose a level:").grid(row=1, column=3, padx=(50,10), pady=(5,10))
+    Button(ChooseLevel, text="L1:Easy", command=Easy_window).grid(row=4, column=3, padx=(50,10), pady=(5,10))
+    Button(ChooseLevel, text="L2:Medium", command=Medium_window).grid(row=5, column=3, padx=(50,10), pady=(5,10))
+    Button(ChooseLevel, text="L3:Hard", command=Hard_window).grid(row=6, column=3, padx=(50,10), pady=(5,10))
+
+    
+   
+
+
+def main():
+    global main_window, entry_box1
+    main_window = Tk()
+    main_window.title("System")
+    main_window.configure(bg='honeydew2')
+    Button(main_window, text="quit", command=quit, width=10).grid(row=0, column=4, padx=(20,3), pady=(0,0))
+    Label(main_window,  text="Hello", width=12).grid(row=2, column=3, sticky=E, padx=(10,30), pady=(0,0))
+    Label(main_window,  text="Welcome to the Math Quiz").grid(row=4, column=3, padx=(10,5), pady=(0,0))
+   
+    Label(main_window, text="Enter your full name:").grid(row=10, column=3, padx=(10,3), pady=(50,0))
+    Button(main_window, text="Start", command=ChooseLevelWindow).grid(row=14, column=3, padx=(10,5), pady=(0,0))
+    Label(main_window, text="by XYZ").grid(row=5, column=3, padx=(10,5), pady=(0,0))
+    entry_box1 = Entry(main_window)
+    entry_box1.grid(row=11, column=3, padx=(10,3), pady=(0,50))
+    
+
+
+
+        
+         
+    main_window.mainloop()
+main()

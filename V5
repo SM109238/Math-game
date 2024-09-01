@@ -1,0 +1,149 @@
+from tkinter import *
+import random
+
+def quit():
+    main_window.destroy()
+
+def fullname():
+    name = entry_box1.get()
+    
+def ChooseLevelWindow():
+    ChooseLevel = Toplevel(main_window)
+    ChooseLevel.title("Choose Level")
+    ChooseLevel.geometry("200x205")
+    ChooseLevel.configure(bg = 'cadet blue')
+    
+    def exit():
+        ChooseLevel.destroy()
+        
+    def Easy_window():
+        def exit():
+            Easy.destroy()
+            
+        Easy = Toplevel(ChooseLevel)
+        Easy.title("Easy level")
+        Easy.geometry("600x500")
+        Easy.configure(bg='light slate gray')
+        
+        Label(Easy, text=entry_box1.get(), bg='light slate gray', fg='white').grid(row=1, column=3, padx=(250,5), pady=(0,0))#name
+        Button(Easy, text="Quit", command=exit).grid(row=0, column=4, sticky=W, padx=(200,600), pady=(0,0))#quit button
+        Label(Easy, text="Question n.o:", bg='light slate gray', fg='white').grid(row=3, column=1) #question n.o
+        Label(Easy, text="L1:Easy", bg='light slate gray', fg='white').grid(row=3, column=4, padx=(100,500), pady=(0,1))#Level
+
+        num = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+         
+        def submit(var1):
+            body_font = ('Courier', 12)
+            colour1= 'red'
+            colour2= 'green'
+            if var1.get() == str(resultPLUS()):
+                correct = Label(Easy, text="Correct!", font=body_font, bg=colour2)
+                #correct.grid(row=13, column=4, padx=(1,5), pady=(0,1))
+                correct.place(relx=0.5, rely=0.2)
+            else:
+                wrong = Label(Easy, text="Wrong!", font=body_font, bg=colour1)
+              #  wrong.grid(row=13, column=4, padx=(100,500), pady=(0,1))
+                wrong.place(relx=0.5, rely=0.2)
+                
+            
+        def try_again():
+            body_font = ('Courier', 12)
+            try_again.num1update = random.choice(num)
+            try_again.num2update = random.choice(num)
+            question.config(text=f"{try_again.num1update}+{try_again.num2update}")
+            question.grid(row=8, column=3, padx=(10,3), pady=(0,50))
+            space = Label(Easy, text="        ", font=body_font, bg='light slate gray')
+            space.place(relx=0.5, rely=0.2)
+
+     
+ 
+       
+        def resultPLUS():
+            return try_again.num1update + try_again.num2update
+
+        def answer():
+            global entry_box2, solving, question
+
+            body_font = ('Courier', 12)
+
+            question = Label(Easy, text=" ", font=body_font, bg='light slate gray', fg='white')
+            question.grid(row=8, column=3)
+            
+##            start = Button(Easy, text="go", command=try_again, width=3)
+##            start.grid(row=8, column=3, sticky=S), #sticky=W, padx=(200,600), pady=(0,0))
+##
+##            
+
+            entry_box2 = Entry(Easy)
+            entry_box2.grid(row=14, column=3, padx=(5,5), pady=(0,50))
+            
+            submit_button = Button(Easy, text="Submit", command=lambda: submit(entry_box2))
+            submit_button.grid(row=16, column=1, padx=(10,3), pady=(0,50))
+
+            try_again_button = Button(Easy, text="Next", command=try_again)
+            try_again_button.grid(row=16, column=4, sticky=W, padx=(200,600), pady=(0,0))
+
+            try_again()
+        answer()
+        Easy.mainloop()
+
+             
+
+    def Medium_window():
+        def exit():
+            Medium.destroy()
+        Medium = Toplevel(ChooseLevel)
+        Medium.title("Easy level")
+        Medium.geometry("600x500")
+        Label(Medium, text=entry_box1.get()).grid(row=1, column=3, padx=(250,5), pady=(0,0))
+        Button(Medium, text="Quit", command=exit).grid(row=0, column=4, sticky=W, padx=(200,600), pady=(0,0))
+        Label(Medium, text="Question n.o:").grid(row=3, column=1) #padx=(100, 200), pady=(12,0))
+        Label(Medium, text="L2:Medium").grid(row=3, column=4, padx=(100,500), pady=(0,1))
+
+        
+
+    def Hard_window():
+        def exit():
+            Hard.destroy()
+        Hard = Toplevel(ChooseLevel)
+        Hard.title("Easy level")
+        Hard.geometry("600x500")
+        Label(Hard, text=entry_box1.get()).grid(row=1, column=3, padx=(250,5), pady=(0,0))
+        Button(Hard, text="Quit", command=exit).grid(row=0, column=4, sticky=W, padx=(200,600), pady=(0,0))
+        Label(Hard, text="Question n.o:").grid(row=3, column=1) #padx=(100, 200), pady=(12,0))
+        Label(Hard, text="L3:Hard").grid(row=3, column=4, padx=(100,500), pady=(0,1))
+
+
+    Button(ChooseLevel, text="Quit", command=exit, width=10, bg='light blue').grid(row=0, column=4, sticky=E, padx=(20,3), pady=(0,0))
+    Label(ChooseLevel, text="Choose a level:", bg='cadet blue', fg='white').grid(row=1, column=3, padx=(50,10), pady=(5,10))
+    Button(ChooseLevel, text="L1:Easy", command=Easy_window, bg='light blue', fg='white').grid(row=4, column=3, padx=(50,10), pady=(5,10))
+    Button(ChooseLevel, text="L2:Medium", command=Medium_window, bg='light blue', fg='cadet blue').grid(row=5, column=3, padx=(50,10), pady=(5,10))
+    Button(ChooseLevel, text="L3:Hard", command=Hard_window, bg='light blue', fg='cadet blue').grid(row=6, column=3, padx=(50,10), pady=(5,10))
+  
+
+
+def main():
+    global main_window, entry_box1
+    main_window = Tk()
+    main_window.title("System")
+    main_window.configure(bg='honeydew2')
+
+     
+    Button(main_window, text="quit", command=quit, width=10, bg='azure2').grid(row=0, column=4, padx=(20,3), pady=(0,0))
+    Label(main_window,  text="Hello", width=12, bg='honeydew2').grid(row=2, column=3, sticky=E, padx=(10,30), pady=(0,0))
+    Label(main_window,  text="Welcome to the Math Quiz", bg='honeydew2').grid(row=4, column=3, padx=(10,5), pady=(0,0))
+   
+    Label(main_window, text="Enter your full name:", bg='honeydew2').grid(row=10, column=3, padx=(10,3), pady=(50,0))
+    Button(main_window, text="Start", command=ChooseLevelWindow, bg='azure2').grid(row=14, column=3, padx=(10,5), pady=(0,0))
+    Label(main_window, text="by XYZ", bg='honeydew2').grid(row=5, column=3, padx=(10,5), pady=(0,0))
+    entry_box1 = Entry(main_window)
+    entry_box1.grid(row=11, column=3, padx=(10,3), pady=(0,50))
+    
+
+
+
+        
+         
+    main_window.mainloop()
+main()
